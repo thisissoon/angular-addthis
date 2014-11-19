@@ -1,12 +1,19 @@
 {
-  "name": "soon-angularjs-template",
-  "description": "A starter project for AngularJS",
-  "version": "0.0.0",
-  "homepage": "https://github.com/angular/angular-seed",
+  "name": "soon-angular-utils",
+  "description": "A handly angularjs library of tools and helpers for general angular application needs",
+  "version": "0.0.1",
+  "homepage": "https://github.com/thisissoon/angular-utils",
   "license": "MIT",
   "main": "app",
   "ignore": [
-    "tests"
+    "tests",
+    ".bowerrc",
+    ".editorconfig",
+    ".gitignore",
+    ".jshintrc",
+    "Gruntfile.js",
+    "package.json",
+    "scripts.json"
   ],
   "private": true,
   "dependencies": {
