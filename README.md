@@ -124,13 +124,13 @@ app/                    --> all of the files to be used in production
       modules/          --> module styling applied to mobile screens  
   index.html            --> app layout file (the main html template file of the app)
   js/                   --> javascript files
-    {app}/              --> doIt angular app javascript files
-      {app}.js          --> angular initialisation
-      config.js         --> angular config
-      controllers/
-        {view}Ctrl.js   --> controllers
-      directives/
-        {module}.js     --> directives
+    {app}/              --> angular module javascript files
+      {app}.js          --> angular module initialisation
+      config.js         --> angular module config
+      controllers/      --> controllers
+        {view}Ctrl.js   
+      directives/       --> directives
+        {module}.js     
     modules/            --> static html files for building and testing styling and mark up
       {module}/
         index.html
@@ -140,7 +140,7 @@ app/                    --> all of the files to be used in production
 tests/                  --> test config and source files
   e2e/                  --> end-to-end specs
     specs/              
-      {example}Spec.js
+      scenarios.js
     protractor.conf.js  --> config file for running e2e tests with Protractor
   unit/                 --> unit level specs/tests
     {app}/              --> follows the same folder structure as javascript files in app folder
