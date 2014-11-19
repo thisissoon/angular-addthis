@@ -1,4 +1,4 @@
-# SOON_ AngularJS Template
+# Angular Utils
 
 This project structure is based on the [angular-seed](https://github.com/angular/angular-seed) application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
 
@@ -9,13 +9,13 @@ The project is preconfigured to install the Angular framework and a bunch of dev
 
 To get you started you can simply clone the repository and install the dependencies:
 
-### Clone SOON_ AngularJS Template repository
+### Clone angular-utils repository
 
-Clone the soon-angularjs-template repository using [git][git]:
+Clone the angular-utils repository using [git][git]:
 
 ```
 cd path/to/parent/directory
-git clone git@github.com:thisissoon/soon-angularjs-template.git
+git clone git@github.com:thisissoon/angular-utils.git
 cd soon-angularjs-template
 ```
 
