@@ -5,9 +5,9 @@
   "homepage": "https://github.com/angular/angular-seed",
   "license": "MIT",
   "main": "app",
-  "ignore": {
+  "ignore": [
     "tests"
-  },
+  ],
   "private": true,
   "dependencies": {
     "angular": "1.2.26",
