@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Example Form</h1>
+            <form role="form" name="form" ng-submit="submit()" novalidate>
+                <p class="bg-success" ng-show="added">User {{ added.user.name }} was successfully added</p>
+                <p class="bg-danger" ng-show="form.$invalid">Please fill in all fields correctly</p>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" ng-model="user.name" placeholder="Enter name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" ng-model="user.email" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" ng-model="user.password" placeholder="Password">
+                </div>
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="user.check"> Check me out
+                    </label>
+                </div>
+                <button id="submit" type="submit" class="btn btn-default">Submit</button>
+            </form>
+            <br />
+            <pre>form = {{user | json}}</pre>
+        </div>
+    </div>
+</div>

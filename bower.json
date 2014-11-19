@@ -1,0 +1,14 @@
+{
+  "name": "soon-angularjs-template",
+  "description": "A starter project for AngularJS",
+  "version": "0.0.0",
+  "homepage": "https://github.com/angular/angular-seed",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "1.2.26",
+    "angular-mocks": "1.2.26",
+    "angular-route": "1.2.26",
+    "bootstrap": "3.2.0"
+  }
+}

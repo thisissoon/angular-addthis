@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="snExampleApp">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>SOON_ AngularJS Template</title>
+        <!-- build:css:production css/all.min.css -->
+        <link rel="stylesheet" href="css/all.css"/>
+        <!-- /build -->
+    </head>
+    <body>
+
+        <ng-view></ng-view>
+
+        <!-- build:js:stage js/app.js --><!-- /build -->
+        <!-- build:js:production js/app.min.js --><!-- /build -->
+        <!-- build:remove -->
+        <script src="components/angular/angular.js"></script>
+        <script src="components/angular-route/angular-route.js"></script>
+
+        <script src="js/soon-example-app/app.js"></script>
+        <script src="js/soon-example-app/config.js"></script>
+        <script src="js/soon-example-app/controllers/HomeCtrl.js"></script>
+        <script src="js/soon-example-app/controllers/AnotherCtrl.js"></script>
+        <script src="js/soon-example-app/controllers/ExampleFormCtrl.js"></script>
+        <!-- /build -->
+
+    </body>
+</html>
