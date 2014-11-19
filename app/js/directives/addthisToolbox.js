@@ -18,11 +18,13 @@
  */
 angular.module("sn.utils").directive("snAddthisToolbox", [
     "$document",
+    "$timeout",
     /**
      * @constructor
      * @param {Service} $document
+     * @param {Service} $timeout
      */
-    function ($document) {
+    function ($document, $timeout) {
         return {
             restrict: "A",
             replace: false,
@@ -32,6 +34,22 @@ angular.module("sn.utils").directive("snAddthisToolbox", [
                 description: "@",
             },
             link: function ($scope, $element, attrs) {
+
+                /**
+                 * Number of times to check for stock addthis buttons
+                 * @property checksLeft
+                 * @type     {Number}
+                 * @default  10
+                 */
+                var checksLeft = 10;
+
+                /**
+                 * Store $timeout instance in variable to clear later
+                 * @property checksLeft
+                 * @type     {$timeout}
+                 */
+                var timer;
+
                 /**
                  * {@link http://support.addthis.com/customer/portal/articles/1337994-the-addthis_config-variable}
                  * @property addthis_config
@@ -51,14 +69,40 @@ angular.module("sn.utils").directive("snAddthisToolbox", [
                 }
 
                 /**
+                 * Removes the stock addthis buttons
+                 * @method removeStockButtons
+                 */
+                var removeStockButtons = function removeStockButtons() {
+                    if (checksLeft > 0){
+                        checksLeft--;
+
+                        var addthisEl = $document[0].getElementById("atstbx");
+
+                        if (addthisEl){
+                            addthisEl.parentNode.removeChild(addthisEl);
+                        } else {
+                            if (timer) {
+                                $timeout.cancel(timer)
+                            }
+                            timer = $timeout(removeStockButtons, 500);
+                        }
+                    }
+                }
+
+                /**
                  * Initialise the addthis buttons on directive load
                  * @method init
                  */
                 var init = function init(){
 
-                    addthis.init();
+                    if (timer) {
+                        $timeout.cancel(timer)
+                    }
 
+                    addthis.init();
                     addthis.toolbox($element[0], addthis_config, addthis_share);
+
+                    timer = $timeout(removeStockButtons, 1000);
                 }
 
                 init();
@@ -67,4 +111,3 @@ angular.module("sn.utils").directive("snAddthisToolbox", [
         }
     }
 ]);
-
