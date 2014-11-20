@@ -16,7 +16,8 @@
     "scripts.json",
     "app/img",
     "app/modules",
-    "app/partials"
+    "app/partials",
+    "index.html"
   ],
   "private": true,
   "dependencies": {

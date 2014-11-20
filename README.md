@@ -16,7 +16,7 @@ Clone the angular-utils repository using [git][git]:
 ```
 cd path/to/parent/directory
 git clone git@github.com:thisissoon/angular-utils.git
-cd soon-angularjs-template
+cd angular-utils
 ```
 
 
