@@ -81,7 +81,7 @@ angular.module("sn.utils").directive("snAddthisToolbox", [
                     if (checksLeft > 0){
                         checksLeft--;
 
-                        var addthisEl = $document[0].getElementById("atstbx");
+                        var addthisEl = $element[0].getElementsByClassName("at-share-tbx-element")[0];
 
                         if (addthisEl){
                             addthisEl.parentNode.removeChild(addthisEl);

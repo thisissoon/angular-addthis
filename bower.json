@@ -1,7 +1,7 @@
 {
   "name": "soon-angular-utils",
   "description": "A handly angularjs library of tools and helpers for general angular application needs",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "homepage": "https://github.com/thisissoon/angular-utils",
   "license": "MIT",
   "main": "app",
@@ -16,7 +16,8 @@
     "scripts.json",
     "app/img",
     "app/modules",
-    "app/partials"
+    "app/partials",
+    "index.html"
   ],
   "private": true,
   "dependencies": {
