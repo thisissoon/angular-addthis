@@ -1,7 +1,7 @@
 {
   "name": "soon-angular-utils",
   "description": "A handly angularjs library of tools and helpers for general angular application needs",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/thisissoon/angular-utils",
   "license": "MIT",
   "main": "app",
