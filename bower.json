@@ -13,7 +13,10 @@
     ".jshintrc",
     "Gruntfile.js",
     "package.json",
-    "scripts.json"
+    "scripts.json",
+    "app/img",
+    "app/modules",
+    "app/partials"
   ],
   "private": true,
   "dependencies": {
