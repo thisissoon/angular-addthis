@@ -12,6 +12,11 @@
  *   <div class="addthis_custom_sharing" sn-addthis-toolbox>
  *     ...       ^
  *   </div>
+ *
+ *   <!-- 3. add classes to anchor links to attach the link to a service -->
+ *   <!-- ['addthis_button_google_plusone_share','addthis_button_twitter','addthis_button_facebook'] -->
+ *   <a href class="addthis_button_google_plusone_share">Share on Google+</a>
+ *
  * @class  snAddthisToolbox
  * @module sn.utils
  * @author SOON_
