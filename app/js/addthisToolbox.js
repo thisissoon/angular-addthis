@@ -7,9 +7,9 @@
  * @example
  *  Usage:
  *   <!-- 1. include `addthis_widget.js` in index page with async attribute -->
- *   <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid={pubid}&domready=1" async="async"></script>
+ *   <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid={pubid}&async=1"></script>
  *
- *   <!-- 2. add "sn-addthis-toolbox" directive to a widget's toolbox div
+ *   <!-- 2. add "sn-addthis-toolbox" directive to a widget's toolbox div -->
  *   <div class="addthis_custom_sharing" sn-addthis-toolbox>
  *     ...       ^
  *   </div>

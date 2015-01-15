@@ -1,4 +1,37 @@
-# Angular Utils
+# Angular AddthisToolbox
+
+Addthis toolbox directive, Re-renders addthis buttons as ngRoute changes
+views in our app since the addthis buttons only load by default on page
+load and not when the DOM is updated.
+
+## Example Usage:
+
+```html
+
+  <!-- 1. include addthis_widget.js in index page with async option -->
+  <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid={pubid}&async=1"></script>
+
+  <!-- 2. add "sn-addthis-toolbox" directive to a widget's toolbox div  -->
+  <sn-addthis-toolbox class="addthis_custom_sharing">
+    ...       ^
+  </sn-addthis-toolbox>
+
+  <!-- 3. add classes to anchor links to attach the link to a service -->
+  <!-- ['addthis_button_google_plusone_share','addthis_button_twitter','addthis_button_facebook'] -->
+  <sn-addthis-toolbox class="addthis_custom_sharing">
+      <a href class="addthis_button_google_plusone_share">Share on Google+</a>
+  </sn-addthis-toolbox>
+
+```
+
+By default the addthis toolbox will get the title and url from the browser, to customise this you can use data attributes to override this data
+
+```html
+<sn-addthis-toolbox data-url="http://www.my-domain.com" data-title="My Website" data-description="foo bar">
+    <a href class="addthis_button_facebook">Facebook</a>
+    <a href class="addthis_button_twitter">Twitter</a>
+</sn-addthis-toolbox>
+```
 
 This project structure is based on the [angular-seed](https://github.com/angular/angular-seed) application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
 
