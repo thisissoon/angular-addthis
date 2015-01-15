@@ -1,19 +1,13 @@
 language: node_js
 node_js:
   - "0.10"
-env:
-  global:
-    - secure: FLjCmIxmFRpPwOaivZNhX73TLYmOXmOhOH7T1pkac//gbFFpETKd+UhgCFeiQqV2itSHLTAkDVpf4YD8qk6MXpPlODfyqhlQlRlFoPb8ihcdv3eAbYpWDifALeo3s/dKwFtqIfhoI4gP4bVF92lsAaC6QQKMJuTv5MQq5o96HBU=
-    - secure: NB9+y80rG+r7nvwBHs5Ec+l9DP7eGwUyTY0+o/ATgAItr4Key6dd00oZIYjSGfZBle5BRrYZnERmNE+4d2NaaemmGssnA/7c9pHrat1SUODiHdg9wOhmQxiA3c0AqBGnEiUz/jLb1rUZaz80wf+4wYST9Jv+PUmsnS00m0WhOFQ=
 before_install:
   - npm install -g bower
   - npm install -g grunt-cli
-  - npm install -g protractor
 install:
   - npm install
 script:
   - grunt test
-  - grunt e2e --ci
 after_success:
   - ./node_modules/coveralls/bin/coveralls.js < coverage/lcov.info
 addons:
