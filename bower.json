@@ -12,7 +12,7 @@
     ".editorconfig",
     ".gitignore",
     ".jshintrc",
-    ".travis.yml"
+    ".travis.yml",
     "Gruntfile.js",
     "package.json",
     "scripts.json"
