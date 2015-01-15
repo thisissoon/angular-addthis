@@ -17,7 +17,7 @@
     "package.json",
     "scripts.json"
   ],
-  "private": true,
+  "private": false,
   "dependencies": {
     "angular": "~1.2.17"
   },
