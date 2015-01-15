@@ -1,14 +1,8 @@
 {
     "vendor": [
-        "app/components/angular/angular.js",
-        "app/components/angular-mocks/angular-mocks.js",
-        "app/components/angular-route/angular-route.js"
+        "app/components/angular/angular.js"
     ],
     "application": [
-        "app/js/soon-example-app/app.js",
-        "app/js/soon-example-app/config.js",
-        "app/js/soon-example-app/controllers/HomeCtrl.js",
-        "app/js/soon-example-app/controllers/AnotherCtrl.js",
-        "app/js/soon-example-app/controllers/ExampleFormCtrl.js"
+        "app/js/addthisToolbox.js"
     ]
 }

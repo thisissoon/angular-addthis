@@ -1,7 +1,8 @@
 "use strict";
 /**
- * AddThis widget directive, Re-renders addthis buttons as angular changes views in our app since
- * the add this buttons only load by default on page load and not when the DOM is updated. based on:
+ * AddThis widget directive, Re-renders addthis buttons as angular changes
+ * views in our app since the add this buttons only load by default on page
+ * load and not when the DOM is updated. based on:
  * {@link http://stackoverflow.com/questions/15593039/angularjs-and-addthis-social-plugin}
  * @example
  *  Usage:
@@ -17,29 +18,42 @@
  *   <!-- ['addthis_button_google_plusone_share','addthis_button_twitter','addthis_button_facebook'] -->
  *   <a href class="addthis_button_google_plusone_share">Share on Google+</a>
  *
- * @class  snAddthisToolbox
- * @module sn.addthisToolbox
  * @main   sn.addthisToolbox
+ * @module sn.addthisToolbox
  * @author SOON_
  */
-angular.module("sn.addthisToolbox", []).directive("snAddthisToolbox", [
+angular.module("sn.addthisToolbox", [])
+
+/**
+ * angular directive which initialise addthis toolbox
+ * @example
+ *     <sn-addthis-toolbox class="addthis_custom_sharing">
+ *         <a href class="addthis_button_facebook">Facebook</a>
+ *     </sn-addthis-toolbox>
+ * @class  snAddthisToolbox
+ * @module sn.addthisToolbox
+ * @author SOON_
+ */
+.directive("snAddthisToolbox", [
     "$document",
     "$timeout",
+    "$window",
     /**
      * @constructor
      * @param {Service} $document
      * @param {Service} $timeout
+     * @param {Service} $window
      */
-    function ($document, $timeout) {
+    function ($document, $timeout, $window) {
         return {
-            restrict: "A",
+            restrict: "EAC",
             replace: false,
             scope: {
                 url: "@",
                 title: "@",
                 description: "@",
             },
-            link: function ($scope, $element, attrs) {
+            link: function ($scope, $element) {
 
                 /**
                  * Number of times to check for stock addthis buttons
@@ -47,73 +61,59 @@ angular.module("sn.addthisToolbox", []).directive("snAddthisToolbox", [
                  * @type     {Number}
                  * @default  10
                  */
-                var checksLeft = 10;
-
-                /**
-                 * Store $timeout instance in variable to clear later
-                 * @property checksLeft
-                 * @type     {$timeout}
-                 */
-                var timer;
+                $scope.checksLeft = 10;
 
                 /**
                  * {@link http://support.addthis.com/customer/portal/articles/1337994-the-addthis_config-variable}
-                 * @property addthis_config
+                 * @property config
                  * @type     {Object}
                  */
-                var addthis_config = addthis_config || {};
+                $scope.config = $window.addthis_config ? $window.addthis_config : {}; // jshint ignore:line
 
                 /**
                  * {@link http://support.addthis.com/customer/portal/articles/1337996-the-addthis_share-variable}
-                 * @property addthis_share
+                 * @property share
                  * @type     {Object}
                  */
-                var addthis_share = {
+                $scope.share = {
                     url: $scope.url,
                     title : $scope.title,
                     description : $scope.description
-                }
+                };
 
                 /**
                  * Removes the stock addthis buttons
                  * @method removeStockButtons
                  */
-                var removeStockButtons = function removeStockButtons() {
-                    if (checksLeft > 0){
-                        checksLeft--;
+                $scope.removeStockButtons = function removeStockButtons() {
+                    if ($scope.checksLeft > 0){
+                        $scope.checksLeft--;
 
                         var addthisEl = $element[0].getElementsByClassName("at-share-tbx-element")[0];
 
                         if (addthisEl){
                             addthisEl.parentNode.removeChild(addthisEl);
                         } else {
-                            if (timer) {
-                                $timeout.cancel(timer)
-                            }
-                            timer = $timeout(removeStockButtons, 500);
+                            $timeout.cancel($scope.timer);
+                            $scope.timer = $timeout($scope.removeStockButtons, 500);
                         }
                     }
-                }
+                };
 
                 /**
                  * Initialise the addthis buttons on directive load
                  * @method init
                  */
-                var init = function init(){
+                $scope.init = function init(){
+                    $window.addthis.init();
+                    $window.addthis.toolbox($element[0], $scope.config, $scope.share);
 
-                    if (timer) {
-                        $timeout.cancel(timer)
-                    }
+                    $scope.timer = $timeout($scope.removeStockButtons, 500);
+                };
 
-                    addthis.init();
-                    addthis.toolbox($element[0], addthis_config, addthis_share);
-
-                    timer = $timeout(removeStockButtons, 1000);
-                }
-
-                init();
+                $scope.init();
 
             }
-        }
+        };
     }
 ]);
