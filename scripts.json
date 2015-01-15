@@ -3,6 +3,6 @@
         "app/components/angular/angular.js"
     ],
     "application": [
-        "app/js/addthisToolbox.js"
+        "app/js/addthis.js"
     ]
 }

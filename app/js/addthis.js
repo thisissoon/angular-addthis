@@ -18,11 +18,11 @@
  *   <!-- ['addthis_button_google_plusone_share','addthis_button_twitter','addthis_button_facebook'] -->
  *   <a href class="addthis_button_google_plusone_share">Share on Google+</a>
  *
- * @main   sn.addthisToolbox
- * @module sn.addthisToolbox
+ * @main   sn.addthis
+ * @module sn.addthis
  * @author SOON_
  */
-angular.module("sn.addthisToolbox", [])
+angular.module("sn.addthis", [])
 
 /**
  * angular directive which initialise addthis toolbox
@@ -31,7 +31,7 @@ angular.module("sn.addthisToolbox", [])
  *         <a href class="addthis_button_facebook">Facebook</a>
  *     </sn-addthis-toolbox>
  * @class  snAddthisToolbox
- * @module sn.addthisToolbox
+ * @module sn.addthis
  * @author SOON_
  */
 .directive("snAddthisToolbox", [

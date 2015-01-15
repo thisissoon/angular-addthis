@@ -3,7 +3,7 @@
 describe("directive: snAddthisToolbox", function() {
     var element, scope, isolatedScope, timeout, _window, addthisEl, spy;
 
-    beforeEach(module("sn.addthisToolbox"));
+    beforeEach(module("sn.addthis"));
 
     beforeEach(inject(function ($rootScope, $compile, $injector) {
         scope = $rootScope.$new();

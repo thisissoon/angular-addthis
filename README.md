@@ -1,4 +1,4 @@
-# Angular AddthisToolbox
+# Angular-Addthis
 [![Build Status](https://travis-ci.org/thisissoon/angular-addthis.svg?branch=master)](https://travis-ci.org/thisissoon/angular-addthis)
 [![Coverage Status](https://img.shields.io/coveralls/thisissoon/angular-addthis.svg)](https://coveralls.io/r/thisissoon/angular-addthis?branch=master)
 
