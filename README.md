@@ -1,4 +1,5 @@
 # Angular AddthisToolbox
+[![Build Status](https://travis-ci.org/thisissoon/angular-addthis-toolbox.svg?branch=develop)](https://travis-ci.org/thisissoon/angular-addthis-toolbox)
 
 Addthis toolbox directive, Re-renders addthis buttons as ngRoute changes
 views in our app since the addthis buttons only load by default on page
