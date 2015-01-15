@@ -1,7 +1,7 @@
 {
-  "name": "soon-addthis",
+  "name": "angular-addthis",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Addthis toolbox directive, Re-renders addthis buttons as ngRoute changes views in our app since the addthis buttons only load by default on page load and not when the DOM is updated.",
   "repository": "https://github.com/thisissoon/angular-utils",
   "license": "MIT",
