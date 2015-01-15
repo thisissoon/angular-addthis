@@ -18,10 +18,11 @@
  *   <a href class="addthis_button_google_plusone_share">Share on Google+</a>
  *
  * @class  snAddthisToolbox
- * @module sn.utils
+ * @module sn.addthisToolbox
+ * @main   sn.addthisToolbox
  * @author SOON_
  */
-angular.module("sn.utils").directive("snAddthisToolbox", [
+angular.module("sn.addthisToolbox", []).directive("snAddthisToolbox", [
     "$document",
     "$timeout",
     /**
