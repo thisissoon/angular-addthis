@@ -1,6 +1,13 @@
 "use strict";
 
+var modRewrite = require("connect-modrewrite");
+
 module.exports = function (grunt) {
+
+    var base = grunt.option("baseDir") || "",
+        protractorConf = grunt.option("ci") ?
+                        "tests/e2e/protractor.saucelabs.conf.js" :
+                        "tests/e2e/protractor.conf.js" ;
 
     grunt.initConfig({
 
@@ -13,58 +20,71 @@ module.exports = function (grunt) {
         },
 
         connect: {
+            options: {
+                hostname: "0.0.0.0",
+                port: 8000,
+                base: base
+            },
             server: {
                 options: {
-                    hostname: "0.0.0.0",
-                    port: 8000,
                     livereload: true,
-                    open: "http://localhost:8000/app/"
+                    middleware: function ( connect, options, middlewares ) {
+                        var rules = (base === "dist") ?
+                            [ "^/[^\.]*$ /index.html" ] :
+                            [ "^/app/[^\.]*$ /app/index.html" ];
+                        middlewares.unshift( modRewrite( rules ) );
+                        return middlewares;
+                    }
                 }
             },
             servertest: {
                 options: {
                     keepalive: false,
-                    hostname: "0.0.0.0",
-                    port: 8000,
-                    livereload: false
+                    livereload: false,
+                    base: "dist",
+                    middleware: function ( connect, options, middlewares ) {
+                        var rules = [ "^/[^\.]*$ /index.html" ];
+                        middlewares.unshift( modRewrite( rules ) );
+                        return middlewares;
+                    }
                 }
             }
         },
 
         watch: {
+            options: {
+                nospawn: false,
+                livereload: true
+            },
             css: {
                 files: [
                     "app/index.html",
+
                     "app/less/*.less",
                     "app/less/**/*.less",
                     "app/less/**/**/*.less",
-                    "app/modules/*.html",
-                    "app/modules/**/*.html",
-                    "app/modules/**/**/*.html",
+
                     "app/partials/*.html",
                     "app/partials/**/*.html",
-                    "app/partials/**/**/*.html"
+                    "app/partials/**/**/*.html",
+
+                    "modules/*.html",
+                    "modules/**/*.html",
+                    "modules/**/**/*.html"
                 ],
-                tasks: ["less:development"],
-                options: {
-                    nospawn: false,
-                    livereload: true
-                }
+                tasks: ["less:development"]
             },
             javascript: {
                 files: [
                     "app/js/*.js",
                     "app/js/**/*.js",
                     "app/js/**/**/*.js",
+
                     "tests/unit/*.js",
                     "tests/unit/**/*.js",
                     "tests/unit/**/**/*.js"
                 ],
-                tasks: ["jshint", "jasmine:development"],
-                options: {
-                    nospawn: false,
-                    livereload: true
-                }
+                tasks: ["test"]
             }
         },
 
@@ -81,9 +101,6 @@ module.exports = function (grunt) {
                     sourceMapURL: "all.css.map",
                     outputSourceFiles: true
                 }
-            },
-            stage: {
-                files: { "<%= config.outputDir %>css/all.css": "app/less/main.less" }
             },
             production: {
                 files: { "<%= config.outputDir %>css/all.min.css": "app/less/main.less" },
@@ -117,9 +134,9 @@ module.exports = function (grunt) {
                         coverage: "coverage/coverage.json",
                         report: [
                             {
-                                type: "html",
+                                type: "lcov",
                                 options: {
-                                    dir: "coverage/html"
+                                    dir: "coverage"
                                 }
                             },
                             {
@@ -129,9 +146,6 @@ module.exports = function (grunt) {
                     }
                 }
             },
-            stage: {
-                src: ["<%= config.outputDir %>js/app.js", "app/components/angular-mocks/angular-mocks.js"]
-            },
             production: {
                 src: ["<%= config.outputDir %>js/app.min.js", "app/components/angular-mocks/angular-mocks.js"]
             }
@@ -139,13 +153,12 @@ module.exports = function (grunt) {
 
         protractor: {
             options: {
-                configFile: "node_modules/protractor/referenceConf.js",
                 keepAlive: false,
                 noColor: false
             },
             dist: {
                 options: {
-                    configFile: "tests/e2e/protractor.conf.js"
+                    configFile: protractorConf
                 }
             }
         },
@@ -153,7 +166,7 @@ module.exports = function (grunt) {
         protractor_webdriver: {
             dist: {
                 options: {
-                    command: "webdriver-manager start",
+                    command: "webdriver-manager update && webdriver-manager start",
                 }
             }
         },
@@ -163,36 +176,30 @@ module.exports = function (grunt) {
                 sourceMap: true,
                 separator: ";"
             },
-            stage: {
+            production: {
                 src: [
                     "<%= config.vendorFiles %>",
                     "<%= config.applicationFiles %>"
                 ],
                 dest: "<%= config.outputDir %>js/app.js"
-            },
-            production: {
-                src: [
-                    "<%= config.vendorFiles %>",
-                    "<%= config.applicationFiles %>"
-                ],
-                dest: "tmp/js/app.js"
             }
         },
 
         uglify: {
             options: {
-                mangle: true,
-                enclose: {},
-                compress: {
-                    drop_console: true
-                },
                 sourceMap: true,
-                sourceMapIn: "tmp/js/app.js.map",
-                sourceMapIncludeSources: true
+                sourceMapIncludeSources: true,
+                enclose: {
+                    window: "window"
+                }
             },
             production: {
                 files: {
-                    "<%= config.outputDir %>js/app.min.js": ["tmp/js/app.js"]
+                    "<%= config.outputDir %>js/app.min.js":
+                    [
+                        "<%= config.vendorFiles %>",
+                        "<%= config.applicationFiles %>"
+                    ]
                 }
             }
         },
@@ -213,30 +220,39 @@ module.exports = function (grunt) {
                     src: ["*.html"],
                     dest: "<%= config.outputDir %>partials/"
                 }]
+            },
+            e2e: {
+                files: [{
+                    expand: true,
+                    flatten: true,
+                    src: [
+                        "app/components/angular-mocks/angular-mocks.js",
+                        "tests/e2e/app.js"
+                    ],
+                    dest: "<%= config.outputDir %>e2e/"
+                }]
             }
         },
 
         clean: {
             beforeBuild: {
-                src: ["<%= config.outputDir %>", "docs", "tmp"]
+                src: ["<%= config.outputDir %>", "docs"]
             },
-            afterBuild: {
-                src: ["tmp"]
+            e2e: {
+                src: ["<%= config.outputDir %>"]
             }
         },
 
         processhtml: {
             options: {
-                data: {
-                    message: "processing 'index.html' file"
-                }
+                strip: true
             },
-            stage: {
+            production: {
                 files: {
                     "<%= config.outputDir %>index.html": ["app/index.html"]
                 }
             },
-            production: {
+            e2e: {
                 files: {
                     "<%= config.outputDir %>index.html": ["app/index.html"]
                 }
@@ -269,38 +285,22 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-watch");
     grunt.loadNpmTasks("grunt-contrib-connect");
     grunt.loadNpmTasks("grunt-contrib-jshint");
-    grunt.loadNpmTasks('grunt-contrib-yuidoc');
+    grunt.loadNpmTasks("grunt-contrib-yuidoc");
     grunt.loadNpmTasks("grunt-contrib-jasmine");
-    grunt.loadNpmTasks('grunt-protractor-runner');
-    grunt.loadNpmTasks('grunt-protractor-webdriver');
+    grunt.loadNpmTasks("grunt-protractor-runner");
+    grunt.loadNpmTasks("grunt-protractor-webdriver");
     grunt.loadNpmTasks("grunt-processhtml");
 
-    grunt.registerTask("build:production", [
+    grunt.registerTask("build", [
         "clean:beforeBuild",
         "jshint",
-        "minify",
+        "uglify",
         "jasmine:production",
         "less:production",
-        "copy",
+        "copy:images",
+        "copy:partials",
         "processhtml:production",
-        "yuidoc",
-        "clean:afterBuild"
-    ]);
-
-    grunt.registerTask("build:stage", [
-        "clean:beforeBuild",
-        "jshint",
-        "concat:stage",
-        "jasmine:stage",
-        "less:stage",
-        "copy",
-        "processhtml:stage",
         "yuidoc"
-    ]);
-
-    grunt.registerTask("minify", [
-        "concat:production",
-        "uglify"
     ]);
 
     grunt.registerTask("server", [
@@ -312,6 +312,12 @@ module.exports = function (grunt) {
     grunt.registerTask("serverjs", [
         "less:development",
         "connect:server",
+        "watch:javascript"
+    ]);
+
+    grunt.registerTask("serverall", [
+        "less:development",
+        "connect:server",
         "watch"
     ]);
 
@@ -321,12 +327,17 @@ module.exports = function (grunt) {
     ]);
 
     grunt.registerTask("e2e", [
+        "uglify",
+        "less:production",
+        "copy",
+        "processhtml:e2e",
         "connect:servertest",
         "protractor_webdriver",
-        "protractor"
+        "protractor:dist",
+        "clean:e2e"
     ]);
 
-    grunt.registerTask("default", ["build:production"]);
-    grunt.registerTask("release", ["build:production"]);
+    grunt.registerTask("default", ["build"]);
+    grunt.registerTask("release", ["build"]);
 
 };
