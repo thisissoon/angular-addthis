@@ -121,14 +121,14 @@ module.exports = function (grunt) {
 
         jasmine: {
             options: {
+                vendor: ["<%= config.vendorFiles %>"],
+                helpers:["app/components/angular-mocks/angular-mocks.js"],
                 specs: ["tests/unit/**/*.js"],
                 keepRunner: true,
             },
             development: {
                 src: ["<%= config.applicationFiles %>"],
                 options: {
-                    vendor: ["<%= config.vendorFiles %>"],
-                    helpers:["app/components/angular-mocks/angular-mocks.js"],
                     template: require("grunt-template-jasmine-istanbul"),
                     templateOptions: {
                         coverage: "coverage/coverage.json",
@@ -147,7 +147,7 @@ module.exports = function (grunt) {
                 }
             },
             production: {
-                src: ["<%= config.outputDir %>js/app.min.js", "app/components/angular-mocks/angular-mocks.js"]
+                src: ["<%= config.outputDir %><%= pkg.name %>.min.js"]
             }
         },
 
@@ -173,31 +173,26 @@ module.exports = function (grunt) {
 
         concat: {
             options: {
-                sourceMap: true,
                 separator: ";"
             },
             production: {
                 src: [
-                    "<%= config.vendorFiles %>",
                     "<%= config.applicationFiles %>"
                 ],
-                dest: "<%= config.outputDir %>js/app.js"
+                dest: "<%= config.outputDir %><%= pkg.name %>.js"
             }
         },
 
         uglify: {
             options: {
-                sourceMap: true,
-                sourceMapIncludeSources: true,
                 enclose: {
                     window: "window"
                 }
             },
             production: {
                 files: {
-                    "<%= config.outputDir %>js/app.min.js":
+                    "<%= config.outputDir %><%= pkg.name %>.min.js":
                     [
-                        "<%= config.vendorFiles %>",
                         "<%= config.applicationFiles %>"
                     ]
                 }
@@ -294,12 +289,9 @@ module.exports = function (grunt) {
     grunt.registerTask("build", [
         "clean:beforeBuild",
         "jshint",
+        "concat",
         "uglify",
         "jasmine:production",
-        "less:production",
-        "copy:images",
-        "copy:partials",
-        "processhtml:production",
         "yuidoc"
     ]);
 
