@@ -6,18 +6,16 @@
   "license": "MIT",
   "main": "app",
   "ignore": [
+    "app",
     "tests",
     ".bowerrc",
     ".editorconfig",
     ".gitignore",
     ".jshintrc",
+    ".travis.yml"
     "Gruntfile.js",
     "package.json",
-    "scripts.json",
-    "app/img",
-    "app/modules",
-    "app/partials",
-    "index.html"
+    "scripts.json"
   ],
   "private": true,
   "dependencies": {
