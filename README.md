@@ -1,4 +1,37 @@
-# Angular Utils
+# Angular AddthisToolbox
+
+Addthis toolbox directive, Re-renders addthis buttons as ngRoute changes
+views in our app since the addthis buttons only load by default on page
+load and not when the DOM is updated.
+
+## Example Usage:
+
+```html
+
+  <!-- 1. include addthis_widget.js in index page with async option -->
+  <script src="//s7.addthis.com/js/300/addthis_widget.js#pubid={pubid}&async=1"></script>
+
+  <!-- 2. add "sn-addthis-toolbox" directive to a widget's toolbox div  -->
+  <sn-addthis-toolbox class="addthis_custom_sharing">
+    ...       ^
+  </sn-addthis-toolbox>
+
+  <!-- 3. add classes to anchor links to attach the link to a service -->
+  <!-- ['addthis_button_google_plusone_share','addthis_button_twitter','addthis_button_facebook'] -->
+  <sn-addthis-toolbox class="addthis_custom_sharing">
+      <a href class="addthis_button_google_plusone_share">Share on Google+</a>
+  </sn-addthis-toolbox>
+
+```
+
+By default the addthis toolbox will get the title and url from the browser, to customise this you can use data attributes to override this data
+
+```html
+<sn-addthis-toolbox data-url="http://www.my-domain.com" data-title="My Website" data-description="foo bar">
+    <a href class="addthis_button_facebook">Facebook</a>
+    <a href class="addthis_button_twitter">Twitter</a>
+</sn-addthis-toolbox>
+```
 
 This project structure is based on the [angular-seed](https://github.com/angular/angular-seed) application skeleton for a typical [AngularJS](http://angularjs.org/) web app.
 
@@ -22,7 +55,7 @@ cd angular-utils
 
 ### Install Dependencies
 
-We have two kinds of dependencies in this project: tools and angular framework code.  The tools help us manage and test the application.
+We have two kinds of dependencies in this project: tools and angular framework code. The tools help us manage and test the application.
 
 * We get the tools we depend upon via `npm`, the [node package manager][npm].
 * We get the angular code via `bower`, a [client-side code package manager][bower].
@@ -52,16 +85,22 @@ folders in your project.
 
 We install our frontend libraries via `bower`, a [client-side code package manager][bower].
 
-To install a library such as angular we can simply do:
+All frontend depenancies such as angular will be installed when running `npm install`. To manully install all depenancies run:
 
 ```
-bower install angular --save
+bower install
 ```
 
-And this will download the angular package from bower and also update the `bower.json` file to include that package. You will still need to add the script tag to the `app/index.html` like so:
+To install a new library such as bootstrap we can simply do:
+
+```
+bower install bootstrap --save
+```
+
+And this will download the bootstrap package from bower and also update the `bower.json` file to include that package. You will then need to add the script tag to `app/index.html` like so:
 
 ```html
-<script src="components/angular/angular.js"></script>
+<script src="path/to/bootstrap.js"></script>
 ```
 
 ### Run the Application
@@ -83,18 +122,20 @@ grunt serverjs
 
 To run tests as well everytime a javascript file is updated
 
+To watch all files run:
+
+```
+grunt serverall
+```
+
+To run tests or compile less to css when the relevent files are updated. 
+
 ### Running the build script
-
-To create a build to deploy for a staging environment simply run: 
-
-```
-grunt build:stage
-```
 
 To create a build to deploy for a production environment simply run: 
 
 ```
-grunt build:production
+grunt build
 ```
 
 The build files will then be in the `dist/` directory.
@@ -131,12 +172,12 @@ app/                    --> all of the files to be used in production
         {view}Ctrl.js   
       directives/       --> directives
         {module}.js     
-    modules/            --> static html files for building and testing styling and mark up
-      {module}/
-        index.html
     partials/           --> angular view partials (partial html templates)
       partial1.html
       partial2.html
+modules/                --> static html files for building and testing styling and mark up
+  {module}/
+    index.html
 tests/                  --> test config and source files
   e2e/                  --> end-to-end specs
     specs/              
@@ -191,20 +232,11 @@ special features for Angular applications.
 
 Protractor simulates interaction with our web app and verifies that the application responds
 correctly. Therefore, our web server needs to be serving up the application, so that Protractor
-can interact with it. You may need to run this command with superuser privileges:
+can interact with it. To run end to end tests we first need to install protractor with global permissions. You may need to run this command with superuser privileges:
 
 ```
 npm install -g protractor
 ```
-
-To run end to end tests we first need to install protractor with global permissions. In addition, since Protractor is built upon WebDriver we need to install this:
-
-
-```
-webdriver-manager update --standalone --chrome
-```
-
-This will download and install the latest version of the stand-alone WebDriver tool.
 
 Once you have ensured that the development web server hosting our application is up and running
 and WebDriver is updated, you can run the end-to-end tests using the supplied grunt task:
@@ -213,8 +245,8 @@ and WebDriver is updated, you can run the end-to-end tests using the supplied gr
 grunt e2e
 ```
 
-This script will execute the end-to-end tests against the application being hosted on the
-development server.
+Behind the scenes this will also run `webdriver-manager update && webdriver-manager start`. This will download and install the latest version of the stand-alone WebDriver tool and start the Selenium web server. This script will execute the end-to-end tests against the application being hosted on the
+development server. 
 
 
 ## Contact

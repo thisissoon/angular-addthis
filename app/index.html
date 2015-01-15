@@ -1,29 +1,30 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="snExampleApp">
+<!-- build:[ng-app]:e2e sn.addthisToolbox.e2e -->
+<html lang="en" ng-app="sn.addthisToolbox">
+<!-- /build -->
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="fragment" content="!" />
         <title>SOON_ AngularJS Template</title>
-        <!-- build:css:production css/all.min.css -->
+        <!-- build:template
+        <base href="/">
+        /build -->
+        <!-- build:remove -->
+        <base href="/app/">
+        <!-- /build -->
+        <!-- build:css css/all.min.css -->
         <link rel="stylesheet" href="css/all.css"/>
         <!-- /build -->
     </head>
     <body>
 
-        <ng-view></ng-view>
-
-        <!-- build:js:stage js/app.js --><!-- /build -->
-        <!-- build:js:production js/app.min.js --><!-- /build -->
-        <!-- build:remove -->
+        <!-- build:js js/app.min.js -->
         <script src="components/angular/angular.js"></script>
-        <script src="components/angular-route/angular-route.js"></script>
 
-        <script src="js/soon-example-app/app.js"></script>
-        <script src="js/soon-example-app/config.js"></script>
-        <script src="js/soon-example-app/controllers/HomeCtrl.js"></script>
-        <script src="js/soon-example-app/controllers/AnotherCtrl.js"></script>
-        <script src="js/soon-example-app/controllers/ExampleFormCtrl.js"></script>
+        <script src="js/addthisToolbox.js"></script>
         <!-- /build -->
+        <!-- build:include:e2e ../tests/e2e/scripts.html --><!-- /build -->
 
     </body>
 </html>
