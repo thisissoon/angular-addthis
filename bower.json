@@ -4,7 +4,7 @@
   "version": "0.1.1",
   "homepage": "https://github.com/thisissoon/angular-addthis",
   "license": "MIT",
-  "main": "app",
+  "main": "dist/angular-addthis.js",
   "ignore": [
     "app",
     "tests",
