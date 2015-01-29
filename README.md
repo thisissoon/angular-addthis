@@ -44,14 +44,14 @@ The project is preconfigured to install the Angular framework and a bunch of dev
 
 To get you started you can simply clone the repository and install the dependencies:
 
-### Clone angular-utils repository
+### Clone angular-addthis repository
 
-Clone the angular-utils repository using [git][git]:
+Clone the angular-addthis repository using [git][git]:
 
 ```
 cd path/to/parent/directory
-git clone git@github.com:thisissoon/angular-utils.git
-cd angular-utils
+git clone git@github.com:thisissoon/angular-addthis.git
+cd angular-addthis
 ```
 
 
