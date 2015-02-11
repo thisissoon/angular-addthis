@@ -84,7 +84,7 @@ module.exports = function (grunt) {
                     "tests/unit/**/*.js",
                     "tests/unit/**/**/*.js"
                 ],
-                tasks: ["test"]
+                tasks: ["test:development"]
             }
         },
 
@@ -173,28 +173,25 @@ module.exports = function (grunt) {
 
         concat: {
             options: {
-                separator: ";"
+                separator: ";",
+                banner: "/*! <%= pkg.name %> - v<%= pkg.version %> - " +
+                    "<%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
             },
             production: {
-                src: [
-                    "<%= config.applicationFiles %>"
-                ],
+                src: [ "<%= config.applicationFiles %>" ],
                 dest: "<%= config.outputDir %><%= pkg.name %>.js"
             }
         },
 
         uglify: {
             options: {
-                enclose: {
-                    window: "window"
-                }
+                enclose: { window: "window" },
+                banner: "/*! <%= pkg.name %> - v<%= pkg.version %> - " +
+                    "<%= grunt.template.today(\"yyyy-mm-dd\") %> */\n"
             },
             production: {
                 files: {
-                    "<%= config.outputDir %><%= pkg.name %>.min.js":
-                    [
-                        "<%= config.applicationFiles %>"
-                    ]
+                    "<%= config.outputDir %><%= pkg.name %>.min.js": [ "<%= config.applicationFiles %>" ]
                 }
             }
         },
@@ -303,13 +300,13 @@ module.exports = function (grunt) {
         "jshint",
         "concat",
         "uglify",
-        "jasmine:production",
         "yuidoc"
     ]);
 
     grunt.registerTask("release", [
+        "bump-only",
         "build",
-        "bump"
+        "bump-commit"
     ]);
 
     grunt.registerTask("server", [
@@ -330,9 +327,16 @@ module.exports = function (grunt) {
         "watch"
     ]);
 
-    grunt.registerTask("test", [
+    grunt.registerTask("test:development", [
         "jshint",
         "jasmine:development"
+    ]);
+
+    grunt.registerTask("test", [
+        "clean:beforeBuild",
+        "jshint",
+        "uglify",
+        "jasmine:production"
     ]);
 
     grunt.registerTask("e2e", [
