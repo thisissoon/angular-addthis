@@ -1,3 +1,7 @@
+## Changes in 0.1.5
+
+ * @eopa: update build script (no PR)
+
 ## Changes in 0.1.4
 
  * @eopa: add grunt bump for versioning (#2)
