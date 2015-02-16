@@ -1,4 +1,4 @@
-/*! angular-addthis - v0.1.5 - 2015-02-11 */
+/*! angular-addthis - v0.1.6 - 2015-02-16 */
 "use strict";
 /**
  * AddThis widget directive, Re-renders addthis buttons as angular changes
