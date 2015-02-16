@@ -1,3 +1,7 @@
+## Changes in 0.1.6
+
+ * @eopa: update documentation (no PR)
+
 ## Changes in 0.1.5
 
  * @eopa: update build script (no PR)
