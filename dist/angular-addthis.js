@@ -1,4 +1,4 @@
-/*! angular-addthis - v0.1.6 - 2015-02-16 */
+/*! angular-addthis - v0.1.6 - 2015-05-17 */
 "use strict";
 /**
  * AddThis widget directive, Re-renders addthis buttons as angular changes
@@ -107,6 +107,7 @@ angular.module("sn.addthis", [])
                  */
                 $scope.init = function init(){
                     $window.addthis.init();
+                    $window.addthis.layers.refresh();
                     $window.addthis.toolbox($element[0], $scope.config, $scope.share);
 
                     $scope.timer = $timeout($scope.removeStockButtons, 500);
