@@ -106,6 +106,7 @@ angular.module("sn.addthis", [])
                  */
                 $scope.init = function init(){
                     $window.addthis.init();
+                    $window.addthis.layers.refresh();
                     $window.addthis.toolbox($element[0], $scope.config, $scope.share);
 
                     $scope.timer = $timeout($scope.removeStockButtons, 500);
