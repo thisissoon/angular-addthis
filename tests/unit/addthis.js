@@ -116,6 +116,40 @@ describe("directive: snAddthisToolbox", function() {
 
     });
 
+    describe("layers refresh", function() {
+
+        beforeEach(inject(function ($rootScope, $compile, $injector) {
+
+            spy = jasmine.createSpy("refresh");
+
+            _window.addthis.layers = {
+                refresh: spy
+            }
+
+            element = $compile(element)(scope);
+            scope.$digest();
+
+            isolatedScope = element.isolateScope();
+
+        }));
+
+        beforeEach(function(){
+            for (var i = isolatedScope.checksLeft; i >= 0; i--) {
+                timeout.flush();
+            };
+        })
+
+        afterEach(inject(function ($injector){
+            timeout.verifyNoPendingTasks();
+        }));
+
+
+        it("should refresh layers on init", function (){
+            expect(spy).toHaveBeenCalled();
+        });
+
+   });
+
 
 });
 
