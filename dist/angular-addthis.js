@@ -1,4 +1,4 @@
-/*! angular-addthis - v0.1.7 - 2015-06-09 */
+/*! angular-addthis - v0.1.8 - 2015-07-02 */
 "use strict";
 /**
  * AddThis widget directive, Re-renders addthis buttons as angular changes
@@ -108,7 +108,7 @@ angular.module("sn.addthis", [])
                 $scope.init = function init(){
                     $window.addthis.init();
 
-                    if ($window.addthis.layers) {
+                    if ($window.addthis.layers && $window.addthis.layers.refresh) {
                         $window.addthis.layers.refresh();
                     }
 
