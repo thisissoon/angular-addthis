@@ -107,7 +107,7 @@ angular.module("sn.addthis", [])
                 $scope.init = function init(){
                     $window.addthis.init();
 
-                    if ($window.addthis.layers) {
+                    if ($window.addthis.layers && $window.addthis.layers.refresh) {
                         $window.addthis.layers.refresh();
                     }
 
