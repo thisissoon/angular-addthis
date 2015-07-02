@@ -7,6 +7,7 @@ before_install:
 install:
   - npm install
 script:
+  - grunt test:development
   - grunt test
 after_success:
   - ./node_modules/coveralls/bin/coveralls.js < coverage/lcov.info

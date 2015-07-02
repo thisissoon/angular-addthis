@@ -1,18 +1,23 @@
+## Changes in 0.1.8
+
+ * @bcmrbvm: Fix: Coverage reporting (#8)
+ * @bcmrbvm: Fix: Layers refresh error (#7)
+
 ## Changes in 0.1.7
 
  * @jylinman: Feature: jumborefresh (#6)
 
 ## Changes in 0.1.6
 
- * @eopa: update documentation (no PR)
+ * @bcmrbvm: update documentation (no PR)
 
 ## Changes in 0.1.5
 
- * @eopa: update build script (no PR)
+ * @bcmrbvm: update build script (no PR)
 
 ## Changes in 0.1.4
 
- * @eopa: add grunt bump for versioning (#2)
+ * @bcmrbvm: add grunt bump for versioning (#2)
 
 ## Changes in 0.1.3
 
