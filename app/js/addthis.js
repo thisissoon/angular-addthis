@@ -49,9 +49,7 @@ angular.module("sn.addthis", [])
             restrict: "EAC",
             replace: false,
             scope: {
-                url: "@",
-                title: "@",
-                description: "@",
+                share: "="
             },
             link: function ($scope, $element) {
 
@@ -69,17 +67,6 @@ angular.module("sn.addthis", [])
                  * @type     {Object}
                  */
                 $scope.config = $window.addthis_config ? $window.addthis_config : {}; // jshint ignore:line
-
-                /**
-                 * {@link http://support.addthis.com/customer/portal/articles/1337996-the-addthis_share-variable}
-                 * @property share
-                 * @type     {Object}
-                 */
-                $scope.share = {
-                    url: $scope.url,
-                    title : $scope.title,
-                    description : $scope.description
-                };
 
                 /**
                  * Removes the stock addthis buttons
