@@ -18,7 +18,7 @@ describe("directive: snAddthisToolbox", function() {
         timeout = $injector.get("$timeout");
 
         element =
-            "<sn-addthis-toolbox data-url=\"http://www.my-domain.com\" data-title=\"My Website\" data-description=\"foo bar\">" +
+            "<sn-addthis-toolbox data-share=\"{ url: 'http://www.my-domain.com', title: 'My Website', description: 'foo bar' }\">" +
                 "<a href class=\"addthis_button_facebook\">Facebook</a>" +
                 "<a href class=\"addthis_button_twitter\">Twitter</a>" +
             "</sn-addthis-toolbox>";
@@ -46,9 +46,9 @@ describe("directive: snAddthisToolbox", function() {
     describe("no existing config data", function() {
 
         it("should attach directive options to scope", function (){
-            expect(isolatedScope.url).toEqual("http://www.my-domain.com");
-            expect(isolatedScope.title).toEqual("My Website");
-            expect(isolatedScope.description).toEqual("foo bar");
+            expect(isolatedScope.share.url).toEqual("http://www.my-domain.com");
+            expect(isolatedScope.share.title).toEqual("My Website");
+            expect(isolatedScope.share.description).toEqual("foo bar");
         });
 
         it("should attempt to remove stock addthis buttons", function (){
