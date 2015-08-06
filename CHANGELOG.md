@@ -1,7 +1,11 @@
+## Changes in 0.2.0
+
+ * @edwardoparearyee: Feature: Share attribute (#11)
+
 ## Changes in 0.1.8
 
- * @bcmrbvm: Fix: Coverage reporting (#8)
- * @bcmrbvm: Fix: Layers refresh error (#7)
+ * @edwardoparearyee: Fix: Coverage reporting (#8)
+ * @edwardoparearyee: Fix: Layers refresh error (#7)
 
 ## Changes in 0.1.7
 
@@ -9,15 +13,15 @@
 
 ## Changes in 0.1.6
 
- * @bcmrbvm: update documentation (no PR)
+ * @edwardoparearyee: update documentation (no PR)
 
 ## Changes in 0.1.5
 
- * @bcmrbvm: update build script (no PR)
+ * @edwardoparearyee: update build script (no PR)
 
 ## Changes in 0.1.4
 
- * @bcmrbvm: add grunt bump for versioning (#2)
+ * @edwardoparearyee: add grunt bump for versioning (#2)
 
 ## Changes in 0.1.3
 
