@@ -1,10 +1,30 @@
 # Angular-Addthis
 [![Build Status](https://travis-ci.org/thisissoon/angular-addthis.svg?branch=master)](https://travis-ci.org/thisissoon/angular-addthis)
-[![Coverage Status](https://img.shields.io/coveralls/thisissoon/angular-addthis.svg)](https://coveralls.io/r/thisissoon/angular-addthis?branch=master)
+[![Coverage Status](https://coveralls.io/repos/thisissoon/angular-addthis/badge.svg?branch=master&service=github)](https://coveralls.io/github/thisissoon/angular-addthis?branch=master)
 
 Addthis toolbox directive, Re-renders addthis buttons as ngRoute changes
 views in our app since the addthis buttons only load by default on page
 load and not when the DOM is updated.
+
+## Install
+
+You can install this module using [bower][bower] like so:
+
+```
+bower install angular-addthis --save
+```
+
+Add the angular-addthis library file to your `index.html file` like so:
+
+```html
+<script src="path/to/angular-addthis/dist/angular-addthis.min.js"></script>
+```
+
+Then add the module to your angular app:
+
+```javascript
+angular.module("myApp", ["sn.addthis"])
+```
 
 ## Example Usage:
 
@@ -20,8 +40,14 @@ load and not when the DOM is updated.
 
   <!-- 3. add classes to anchor links to attach the link to a service -->
   <!-- ['addthis_button_google_plusone_share','addthis_button_twitter','addthis_button_facebook'] -->
-  <sn-addthis-toolbox class="addthis_custom_sharing">
-      <a href class="addthis_button_google_plusone_share">Share on Google+</a>
+  <sn-addthis-toolbox 
+    class="addthis_custom_sharing"
+    data-share="{
+        title: 'foo',
+        url: 'http://myurl.com',
+        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    }">
+    <a href class="addthis_button_facebook">Facebook</a>
   </sn-addthis-toolbox>
 
 ```
