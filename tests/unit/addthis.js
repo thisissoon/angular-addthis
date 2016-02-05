@@ -1,7 +1,7 @@
 "use strict";
 
 describe("directive: snAddthisToolbox", function() {
-    var element, scope, isolatedScope, timeout, _window, addthisEl, spy;
+    var element, scope, isolatedScope, timeout, _window, addthisEl, spy, location;
 
     beforeEach(module("sn.addthis"));
 
@@ -16,6 +16,7 @@ describe("directive: snAddthisToolbox", function() {
         }
 
         timeout = $injector.get("$timeout");
+        location = $injector.get("$location");
 
         element =
             "<sn-addthis-toolbox data-share=\"{ url: 'http://www.my-domain.com', title: 'My Website', description: 'foo bar' }\">" +
@@ -137,7 +138,7 @@ describe("directive: snAddthisToolbox", function() {
             for (var i = isolatedScope.checksLeft; i >= 0; i--) {
                 timeout.flush();
             };
-        })
+        });
 
         afterEach(inject(function ($injector){
             timeout.verifyNoPendingTasks();
@@ -148,8 +149,7 @@ describe("directive: snAddthisToolbox", function() {
             expect(spy).toHaveBeenCalled();
         });
 
-   });
-
+    });
 
 });
 
