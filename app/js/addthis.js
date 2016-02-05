@@ -38,13 +38,15 @@ angular.module("sn.addthis", [])
     "$document",
     "$timeout",
     "$window",
+    "$location",
     /**
      * @constructor
      * @param {Service} $document
      * @param {Service} $timeout
      * @param {Service} $window
+     * @param {Service} $location
      */
-    function ($document, $timeout, $window) {
+    function ($document, $timeout, $window, $location) {
         return {
             restrict: "EAC",
             replace: false,
@@ -92,6 +94,12 @@ angular.module("sn.addthis", [])
                  * @method init
                  */
                 $scope.init = function init(){
+                    // Use location service to get url if not set
+                    $scope.share = $scope.share || {};
+                    if (!$scope.share.url) {
+                        $scope.share.url = $location.absUrl();
+                    }
+
                     $window.addthis.init();
 
                     if ($window.addthis.layers && $window.addthis.layers.refresh) {
