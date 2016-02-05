@@ -38,20 +38,24 @@ angular.module("sn.addthis", [])
     "$document",
     "$timeout",
     "$window",
+    "$location",
     /**
      * @constructor
      * @param {Service} $document
      * @param {Service} $timeout
      * @param {Service} $window
+     * @param {Service} $location
      */
-    function ($document, $timeout, $window) {
+    function ($document, $timeout, $window, $location) {
         return {
             restrict: "EAC",
             replace: false,
             scope: {
-                share: "="
+                share: "=?"
             },
             link: function ($scope, $element) {
+
+                $scope.share = $scope.share ? $scope.share : {};
 
                 /**
                  * Number of times to check for stock addthis buttons
@@ -92,6 +96,16 @@ angular.module("sn.addthis", [])
                  * @method init
                  */
                 $scope.init = function init(){
+                    // Use location service to get url if not set
+                    if (!$scope.share.url) {
+                        $scope.share.url = $location.absUrl();
+
+                        // Fix addthis share link for root url
+                        if ($location.path() === "/") {
+                            $scope.share.url = $scope.share.url + "#/";
+                        }
+                    }
+
                     $window.addthis.init();
 
                     if ($window.addthis.layers && $window.addthis.layers.refresh) {
