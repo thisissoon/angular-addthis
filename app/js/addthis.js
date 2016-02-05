@@ -51,9 +51,11 @@ angular.module("sn.addthis", [])
             restrict: "EAC",
             replace: false,
             scope: {
-                share: "="
+                share: "=?"
             },
             link: function ($scope, $element) {
+
+                $scope.share = $scope.share ? $scope.share : {};
 
                 /**
                  * Number of times to check for stock addthis buttons
@@ -95,13 +97,12 @@ angular.module("sn.addthis", [])
                  */
                 $scope.init = function init(){
                     // Use location service to get url if not set
-                    $scope.share = $scope.share || {};
                     if (!$scope.share.url) {
                         $scope.share.url = $location.absUrl();
 
                         // Fix addthis share link for root url
-                        if ($location.path() === '/') {
-                            $scope.share.url = $scope.share.url + '#/';
+                        if ($location.path() === "/") {
+                            $scope.share.url = $scope.share.url + "#/";
                         }
                     }
 
