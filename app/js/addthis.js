@@ -98,6 +98,11 @@ angular.module("sn.addthis", [])
                     $scope.share = $scope.share || {};
                     if (!$scope.share.url) {
                         $scope.share.url = $location.absUrl();
+
+                        // Fix addthis share link for root url
+                        if ($location.path() === '/') {
+                            $scope.share.url = $scope.share.url + '#/';
+                        }
                     }
 
                     $window.addthis.init();
