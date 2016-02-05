@@ -1,3 +1,7 @@
+## Changes in 0.2.1
+
+ * @jamesjwarren: Fix: get share url from $location service (#14)
+
 ## Changes in 0.2.0
 
  * @edwardoparearyee: Feature: Share attribute (#11)

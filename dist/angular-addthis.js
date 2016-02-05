@@ -1,4 +1,4 @@
-/*! angular-addthis - v0.2.0 - 2015-08-06 */
+/*! angular-addthis - v0.2.1 - 2016-02-05 */
 "use strict";
 /**
  * AddThis widget directive, Re-renders addthis buttons as angular changes
@@ -39,20 +39,24 @@ angular.module("sn.addthis", [])
     "$document",
     "$timeout",
     "$window",
+    "$location",
     /**
      * @constructor
      * @param {Service} $document
      * @param {Service} $timeout
      * @param {Service} $window
+     * @param {Service} $location
      */
-    function ($document, $timeout, $window) {
+    function ($document, $timeout, $window, $location) {
         return {
             restrict: "EAC",
             replace: false,
             scope: {
-                share: "="
+                share: "=?"
             },
             link: function ($scope, $element) {
+
+                $scope.share = $scope.share ? $scope.share : {};
 
                 /**
                  * Number of times to check for stock addthis buttons
@@ -93,6 +97,16 @@ angular.module("sn.addthis", [])
                  * @method init
                  */
                 $scope.init = function init(){
+                    // Use location service to get url if not set
+                    if (!$scope.share.url) {
+                        $scope.share.url = $location.absUrl();
+
+                        // Fix addthis share link for root url
+                        if ($location.path() === "/") {
+                            $scope.share.url = $scope.share.url + "#/";
+                        }
+                    }
+
                     $window.addthis.init();
 
                     if ($window.addthis.layers && $window.addthis.layers.refresh) {
