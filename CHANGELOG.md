@@ -1,3 +1,7 @@
+## Changes in 0.2.2
+
+ * @jamesjwarren: Fix: set share default title and description from document (#17)
+
 ## Changes in 0.2.1
 
  * @jamesjwarren: Fix: get share url from $location service (#14)

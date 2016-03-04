@@ -1,4 +1,4 @@
-/*! angular-addthis - v0.2.1 - 2016-02-05 */
+/*! angular-addthis - v0.2.2 - 2016-03-04 */
 "use strict";
 /**
  * AddThis widget directive, Re-renders addthis buttons as angular changes
@@ -105,6 +105,17 @@ angular.module("sn.addthis", [])
                         if ($location.path() === "/") {
                             $scope.share.url = $scope.share.url + "#/";
                         }
+                    }
+
+                    // Default share title from page title
+                    if (!$scope.share.title) {
+                        var titleElement = $document[0].querySelector("title");
+                        $scope.share.title = titleElement ? titleElement.innerHTML : "";
+                    }
+                    // Default share description from page title
+                    if (!$scope.share.description) {
+                        var descElement = $document[0].querySelector("meta[name='description']");
+                        $scope.share.description = descElement ? descElement.getAttribute("content") : "";
                     }
 
                     $window.addthis.init();
