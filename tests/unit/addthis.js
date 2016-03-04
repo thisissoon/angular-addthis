@@ -1,9 +1,13 @@
 "use strict";
 
 describe("directive: snAddthisToolbox", function() {
-    var element, scope, isolatedScope, timeout, _window, addthisEl, spy, location;
+    var element, scope, isolatedScope, timeout, _window, addthisEl, spy, location, _document;
 
-    beforeEach(module("sn.addthis"));
+    beforeEach(module("sn.addthis", function ($provide) {
+        // Mock document
+        _document = document.implementation.createHTMLDocument("Title");
+        $provide.value('$document', angular.element(_document));
+    }));
 
     beforeEach(inject(function ($rootScope, $compile, $injector) {
         scope = $rootScope.$new();
@@ -147,6 +151,27 @@ describe("directive: snAddthisToolbox", function() {
 
         it("should refresh layers on init", function (){
             expect(spy).toHaveBeenCalled();
+        });
+
+    });
+
+    describe("default metadata from document", function() {
+
+        beforeEach(inject(function ($rootScope, $compile, $injector) {
+
+            element =
+                "<sn-addthis-toolbox>" +
+                    "<div class=\"at-share-tbx-element\"></div>" +
+                "</sn-addthis-toolbox>";
+
+            element = $compile(element)(scope);
+            scope.$digest();
+            isolatedScope = element.isolateScope();
+            timeout.flush();
+        }));
+
+        it("should set share title from meta", function (){
+            expect(isolatedScope.share.title).toEqual("Title");
         });
 
     });

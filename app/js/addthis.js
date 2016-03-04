@@ -106,6 +106,17 @@ angular.module("sn.addthis", [])
                         }
                     }
 
+                    // Default share title from page title
+                    if (!$scope.share.title) {
+                        var titleElement = $document[0].querySelector("title");
+                        $scope.share.title = titleElement ? titleElement.innerHTML : "";
+                    }
+                    // Default share description from page title
+                    if (!$scope.share.description) {
+                        var descElement = $document[0].querySelector("meta[name='description']");
+                        $scope.share.description = descElement ? descElement.getAttribute("content") : "";
+                    }
+
                     $window.addthis.init();
 
                     if ($window.addthis.layers && $window.addthis.layers.refresh) {
