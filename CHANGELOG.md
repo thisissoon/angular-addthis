@@ -1,3 +1,8 @@
+## 0.2.4
+
+ * @edwardoparearyee: Feature: npm publish (#21)
+ * @mrded: Add index.js file (#20)
+
 ## Changes in 0.2.2
 
  * @jamesjwarren: Fix: set share default title and description from document (#17)
