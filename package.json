@@ -3,16 +3,46 @@
   "private": false,
   "version": "0.2.2",
   "description": "Addthis toolbox directive, Re-renders addthis buttons as ngRoute changes views in our app since the addthis buttons only load by default on page load and not when the DOM is updated.",
-  "repository": "https://github.com/thisissoon/angular-utils",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thisissoon/angular-addthis"
+  },
+  "bugs": {
+    "url": "https://github.com/thisissoon/angular-addthis/issues",
+    "email": "dorks@thisissoon.com"
+  },
   "license": "MIT",
+  "author": "SOON_ <dorks@thisissoon.com>",
+   "contributors": [
+    { "name": "Ed Opare-Aryee", "email": "ed@thisissoon.com" },
+    { "name": "James Warren", "email": "james@thisissoon.com" },
+    { "name": "Jonathan Reyes", "email": "contact@jonathanreyes.com" },
+    { "name": "Dmitry Demenchuk", "email": "" }
+  ],
+  "main": "dist/angular-addthis.js",
+  "keywords": [
+    "angular",
+    "addthis",
+    "share",
+    "directive"
+  ],
+  "files": [
+    "app/js",
+    "dist",
+    "node_modules",
+    "CHANGELOG.md",
+    "README.md",
+    "LICENSE"
+  ],
   "dependencies": {
-    "bower": "~1.5.3",
-    "grunt": "~0.4.5"
+    "angular": ">= 1.2 <= 1.6"
   },
   "devDependencies": {
+    "bower": "~1.5.3",
     "connect-livereload": "~0.5.3",
     "connect-modrewrite": "~0.8.2",
     "coveralls": "~2.11.2",
+    "grunt": "~0.4.5",
     "grunt-bump": "~0.6.0",
     "grunt-contrib-clean": "~0.6.0",
     "grunt-contrib-concat": "~0.5.1",
@@ -34,8 +64,5 @@
     "grunt-template-jasmine-istanbul": "~0.3.3",
     "protractor": "~2.5.1",
     "yuidoc-bootstrap-theme": "~1.0.4"
-  },
-  "scripts": {
-    "postinstall": "bower install"
   }
 }
