@@ -1,7 +1,7 @@
 {
   "name": "angular-addthis",
   "description": "Re-renders addthis buttons as ngRoute changes views in app",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "homepage": "https://github.com/thisissoon/angular-addthis",
   "license": "MIT",
   "main": "dist/angular-addthis.js",
